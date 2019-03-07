@@ -1,0 +1,133 @@
+<html>
+<html lang="en-us">
+
+<head>
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./jquery/jquery-3.3.1.min.js"></script>
+    <script src="./jquery/jquery-ui.js"></script>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <title> Uranium 235</title>
+    <script src="./scripts/partical.js"></script>
+    <script src="./scripts/effects.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway+Dots" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="project-name">Uranium 235</li>
+            <li class="instructions">Instructions</li>
+            <li class="technical">Technical Requirements</li>
+
+        </ul>
+    </nav>
+
+    <div id="game-container">
+        <button id='start-button'> Start </button>
+        <h1 id=Title-description> Uranium 235</h1>
+        <p id=info-description> This interactive surface will show the basics of a nuclear reaction. <br><br>
+            The nuclear reaction is started by firing a Neutron at Uranium 235.<br><br>
+            This causes the Uranium to split into Krypton 92 and Barium 141,<br> <br>
+            Which in turn, releases 3 Neutrons resulting in a chain reaction.
+        </p>
+        <canvas id="myCanvas" width="1024" height="768" style="filter: blur(5px);"></canvas>
+
+        <div id="instructions-lightbox">
+            <h2> Instructions </h2>
+            <p>
+                m = Mute <br><br>
+                r = Reset<br><br>
+                i = Increase amount of Uranium<br><br>
+                k = Decrease amount of Uranium<br><br>
+                Left Click - Place and Fire first Neutron<br><br>
+                , = slow down simulation<br><br>
+                . = speed up simulation<br><br>
+                p = pause simulation<br><br>
+                Esc = return to start screen<br><br>
+                a = auto add Uranium<br><br>
+
+            </p>
+            <img id="close-instructions" src="./images/close.png">
+        </div>
+        <div id="technical-lightbox">
+            <h2> Technical Requirements </h2>
+            <p> Works best on Chrome browser</p>
+            <img id="close-technical" src="./images/close.png">
+        </div>
+
+    </div>
+
+</body>
+<script src="./scripts/canvas.js"></script>
+<script>
+
+    var viewportWidth = $(window).width();
+    $('#related').css({ 'width': viewportWidth })
+    $('.related-content').css({ 'width': viewportWidth / 4 });
+    $('.related-content').css({ 'height': viewportWidth / 6 });
+    $('.related-lightbox').css({ 'width': viewportWidth / 4 });
+    $('.related-lightbox').css({ 'height': viewportWidth / 6 });
+
+    $(window).resize(function () {
+        var viewportWidth = $(window).width();
+        if (viewportWidth > 1280) {
+            $('#related').css({ 'width': viewportWidth })
+            $('.related-content').css({ 'width': viewportWidth / 4 });
+            $('.related-content').css({ 'height': viewportWidth / 6 });
+            $('.related-lightbox').css({ 'width': viewportWidth / 4 });
+            $('.related-lightbox').css({ 'height': viewportWidth / 6 });
+        }
+    });
+
+    $('.related-lightbox').hover(function () {
+        $(this).fadeTo("fast", 0.9);
+    }, function () {
+        $(this).fadeTo("fast", 0);
+    })
+
+    instructions = false;
+    technical = false;
+
+    $('.instructions').click(function () {
+        if (technical) {
+            $('#technical-lightbox').css('opacity', 0);
+            $('#technical-lightbox').css('visibility', 'hidden');
+            $('#instructions-lightbox').css('visibility', 'visible');
+            $('#instructions-lightbox').stop().fadeTo(400, 0.9);
+        } else {
+            $('#instructions-lightbox').css('visibility', 'visible');
+            $('#instructions-lightbox').stop().fadeTo(400, 0.9);
+        }
+        instructions = true;
+    })
+
+    $('#close-instructions').click(function () {
+        instructions = false;
+        $('#instructions-lightbox').fadeTo(100, 0, function () {
+            $('#instructions-lightbox').css('visibility', 'hidden');
+        });
+    })
+
+    $('.technical').click(function () {
+        if (instructions) {
+            $('#instructions-lightbox').css('opacity', 0);
+            $('#instructions-lightbox').css('visibility', 'hidden');
+            $('#technical-lightbox').css('visibility', 'visible');
+            $('#technical-lightbox').stop().fadeTo(400, 0.9);
+        } else {
+            $('#technical-lightbox').css('visibility', 'visible');
+            $('#technical-lightbox').stop().fadeTo(400, 0.9);
+        }
+        technical = true;
+    })
+
+    $('#close-technical').click(function () {
+        $('#technical-lightbox').stop().fadeTo(100, 0, function () {
+            $('#technical-lightbox').css('visibility', 'hidden');
+        });
+        technical = false;
+    })
+
+</script>
