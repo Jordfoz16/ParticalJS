@@ -65,7 +65,7 @@ function particle(xPos, yPos, radius, mass, name){
     this.isRemoved = false;
 	
     //Creates a sound object
-	this.audioPop = new Audio('sound/pop.mp3');
+	this.audioPop = new Audio('sounds/pop.mp3');
 	this.audioPop.volume = 0.2;
 	
     //Adds the particle to a particle array

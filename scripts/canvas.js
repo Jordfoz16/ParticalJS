@@ -14,7 +14,6 @@ muteImage.src = 'images/mute.png';
 //Start screen Variables
 var atStartScreen = true;
 
-
 var atHelp = false;
 var neutronPlaced = false;
 var neutronFired = false;
@@ -52,8 +51,8 @@ function canvasLoop(){
     canvasMarginLeft = parseInt(canvasMarginLeft.substr(0, canvasMarginLeft.length-2));
     canvasMarginTop = parseInt(canvasMarginTop.substr(0, canvasMarginTop.length-2));
     particlePosAdjustX = canvasMarginLeft + canvasPos.left;
-    particlePosAdjustY = canvasMarginTop + canvasPos.top;
-    
+    particlePosAdjustY = -window.pageYOffset + canvasMarginTop;
+
     //updateParticles method draws, moves and calculates collisions
     updateParticles();
     
@@ -66,16 +65,11 @@ function canvasLoop(){
                
     }else{
         infomation();
-                    
-
     }
     
     //Calls the canvasLoop method to refresh the canvas
     requestAnimationFrame(canvasLoop);
 }
-//sams get mouse position relative to window size
-
-
 
 ////////////////////////////////////////////////////
 //Particle Control
@@ -215,8 +209,6 @@ var randomParticlsRan = false;
 */
 
 $('#start-button').click(function(){
-    
-    
             removeAll();
             atStartScreen = false;
           
@@ -225,22 +217,14 @@ $('#start-button').click(function(){
         $( "#Title-description" ).css({"visibility": "hidden"});
       $( "#info-description" ).css({"visibility": "hidden"});
           $( "#myCanvas" ).css({'filter': "Blur(0px)"});
-    
-
 })
 
 
 
 function startScreen(){
 
-	
-	
-		//This is a breif intro to the interactive surface
- 
-    
-    //Draws both buttons to the screen
-
-	
+	//This is a breif intro to the interactive surface
+    //Draws both buttons to the screen	
     //Adds 60 random particles to the start screen
     addRandomParticles(60);
 }
@@ -537,9 +521,6 @@ canvas.addEventListener('mousedown', function(event){
             neutronFired = true;
         }
     }
-	
-    //Uses the hit regions to create buttons DDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDSDS
-
 });
 
 canvas.addEventListener('mousemove', function(event){
@@ -548,7 +529,4 @@ canvas.addEventListener('mousemove', function(event){
         mouseX = event.clientX ;
         mouseY = event.clientY;
     }
-    
-    //Uses hit region to create a roll over button
-
 });
